@@ -93,6 +93,7 @@ public class EmailServiceImpl implements EmailService {
 		entity.setFrom(dto.getFromMail());
 		entity.setStatus(AppConstant.NOT_SENT);
 		entity.setCreateBy(user);
+		entity.setDepartment(dto.getDepartment());
 		entity.setCreateDate(new Date());
 		return entity;
 	}

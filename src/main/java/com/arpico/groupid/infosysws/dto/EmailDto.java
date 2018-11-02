@@ -11,6 +11,7 @@ public class EmailDto {
 	private String fromMail;
 	private String subject;
 	private String body;
+	private String department;
 	private List<String> ccMails;
 	private List<String> filePaths;
 	private List<MultipartFile> attachments;
@@ -55,6 +56,14 @@ public class EmailDto {
 		this.body = body;
 	}
 
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
 	public List<String> getFilePaths() {
 		return filePaths;
 	}
@@ -82,7 +91,7 @@ public class EmailDto {
 	@Override
 	public String toString() {
 		return "EmailDto [token=" + token + ", toMail=" + toMail + ", fromMail=" + fromMail + ", subject=" + subject
-				+ ", body=" + body + ", ccMails=" + ccMails + ", attachments=" + attachments + "]";
+				+ ", body=" + body + ", department=" + department + ", ccMails=" + ccMails + ", filePaths=" + filePaths
+				+ ", attachments=" + attachments + "]";
 	}
-
 }

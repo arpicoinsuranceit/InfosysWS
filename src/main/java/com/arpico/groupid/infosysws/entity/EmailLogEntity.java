@@ -21,6 +21,7 @@ public class EmailLogEntity {
 	private String body;
 	private String subject;
 	private String status;
+	private String department;
 	private String createBy;
 	private Date createDate;
 	private String modifyBy;
@@ -83,6 +84,15 @@ public class EmailLogEntity {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	@Column(name = "EMLDEP", nullable = false)
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
 	}
 
 	@Column(name = "CRETBY", nullable = false)
