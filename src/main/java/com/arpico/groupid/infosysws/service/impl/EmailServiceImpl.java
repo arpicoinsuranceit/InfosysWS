@@ -18,12 +18,16 @@ import com.arpico.groupid.infosysws.entity.EmailAttachmentEntity;
 import com.arpico.groupid.infosysws.entity.EmailCCEntity;
 import com.arpico.groupid.infosysws.entity.EmailLogEntity;
 import com.arpico.groupid.infosysws.security.JwtDecoder;
+import com.arpico.groupid.infosysws.service.EmailSendService;
 import com.arpico.groupid.infosysws.service.EmailService;
 import com.arpico.groupid.infosysws.util.AppConstant;
 
 @Service
 @Transactional
 public class EmailServiceImpl implements EmailService {
+	
+	@Autowired
+	private EmailSendService emailSendService;
 
 	@Autowired
 	private EmailLogDao emailLogDao;
@@ -92,7 +96,18 @@ public class EmailServiceImpl implements EmailService {
 
 			emailAttachmentDao.save(entities);
 		}
-
+		
+		new Thread()
+		{
+		    public void run() {
+		        try {
+					emailSendService.sendEmail(emailDto, savedEmailLogEntity);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		    }
+		}.start();
+		
 		ResponseDto responseDto = new ResponseDto();
 		
 		responseDto.setCode("200");
