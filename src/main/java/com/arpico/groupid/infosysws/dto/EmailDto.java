@@ -12,6 +12,7 @@ public class EmailDto {
 	private String subject;
 	private String body;
 	private List<String> ccMails;
+	private List<String> filePaths;
 	private List<MultipartFile> attachments;
 
 	public String getToken() {
@@ -52,6 +53,14 @@ public class EmailDto {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+
+	public List<String> getFilePaths() {
+		return filePaths;
+	}
+
+	public void setFilePaths(List<String> filePaths) {
+		this.filePaths = filePaths;
 	}
 
 	public List<String> getCcMails() {
