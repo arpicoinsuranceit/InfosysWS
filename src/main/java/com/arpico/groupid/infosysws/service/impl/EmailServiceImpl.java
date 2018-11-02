@@ -40,7 +40,23 @@ public class EmailServiceImpl implements EmailService {
 	@Override
 	public ResponseDto send(EmailDto emailDto) throws Exception {
 		
-		String userName = decoder.generate(emailDto.getToken());
+		String userName = null;
+		
+		if(emailDto.getUserCode() != null && !emailDto.getUserCode().isEmpty()) {
+			userName = emailDto.getUserCode();
+		} else if(emailDto.getToken() != null && !emailDto.getToken().isEmpty()) {
+			userName = decoder.generate(emailDto.getToken());
+		}
+		
+		if(userName == null || userName.equals("")) {
+			ResponseDto responseDto = new ResponseDto();
+			
+			responseDto.setCode("404");
+			responseDto.setMessage("User Not Found");;
+			responseDto.setStatus("Error");;
+			return responseDto;
+		}
+		
 
 		EmailLogEntity emailLogEntity = getEmailLogEntity(emailDto, userName);
 		

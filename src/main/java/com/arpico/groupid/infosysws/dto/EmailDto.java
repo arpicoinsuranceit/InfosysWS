@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class EmailDto {
 
+	private String userCode;
 	private String token;
 	private String toMail;
 	private String fromMail;
@@ -15,6 +16,14 @@ public class EmailDto {
 	private List<String> ccMails;
 	private List<String> filePaths;
 	private List<MultipartFile> attachments;
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
 
 	public String getToken() {
 		return token;
@@ -90,8 +99,10 @@ public class EmailDto {
 
 	@Override
 	public String toString() {
-		return "EmailDto [token=" + token + ", toMail=" + toMail + ", fromMail=" + fromMail + ", subject=" + subject
-				+ ", body=" + body + ", department=" + department + ", ccMails=" + ccMails + ", filePaths=" + filePaths
-				+ ", attachments=" + attachments + "]";
+		return "EmailDto [userCode=" + userCode + ", token=" + token + ", toMail=" + toMail + ", fromMail=" + fromMail
+				+ ", subject=" + subject + ", body=" + body + ", department=" + department + ", ccMails=" + ccMails
+				+ ", filePaths=" + filePaths + ", attachments=" + attachments + "]";
 	}
+
+	
 }
