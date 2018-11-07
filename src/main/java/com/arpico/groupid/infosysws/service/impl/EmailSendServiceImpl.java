@@ -21,7 +21,6 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.transaction.Transactional;
 
-import org.bouncycastle.asn1.dvcs.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -52,8 +51,7 @@ public class EmailSendServiceImpl implements EmailSendService {
 	}
 
 	private void sendEmail(EmailDto dto) throws AddressException, MessagingException, IllegalStateException, IOException {
-		// TODO Auto-generated method stub
-
+		
 		Properties props = new Properties();
 
 		props.put("mail.smtp.auth", "true");
@@ -64,7 +62,8 @@ public class EmailSendServiceImpl implements EmailSendService {
 		Session session = Session.getInstance(props,
 				new javax.mail.Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
-						return new PasswordAuthentication("userName", "password");
+						return new PasswordAuthentication(Email.getMail(dto.getDepartment()),
+								Email.getPassword(dto.getDepartment()));
 					}
 
 				});
