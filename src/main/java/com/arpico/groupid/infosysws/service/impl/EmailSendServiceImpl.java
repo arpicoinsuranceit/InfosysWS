@@ -21,7 +21,6 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.transaction.Transactional;
 
-import org.bouncycastle.asn1.dvcs.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -58,7 +57,7 @@ public class EmailSendServiceImpl implements EmailSendService {
 
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", Email.HOST);
+		props.put("mail.smtp.host", Email.HOST); 
 		props.put("mail.smtp.port", Email.PORT);
 
 		Session session = Session.getInstance(props,
