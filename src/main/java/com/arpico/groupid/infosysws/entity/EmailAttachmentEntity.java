@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Table(name = "EMAIL_ATTACHMENT")
+@Table(name = "INEMAIL_ATTACHMENT")
 @Entity
 public class EmailAttachmentEntity {
 

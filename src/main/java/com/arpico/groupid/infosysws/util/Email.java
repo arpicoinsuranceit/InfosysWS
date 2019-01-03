@@ -2,28 +2,26 @@ package com.arpico.groupid.infosysws.util;
 
 public class Email {
 
-	public final static String HOST = "";
-	public final static String PORT = "";
-<<<<<<< HEAD
-	
-	public final static String FINANCE_EMAIL = "";
-	public final static String LIFE_NEW_BUSINESS = "";
-	public final static String LIFE_SERVICEING = "";
-	public final static String IT = "";
-	public final static String SALES = "";
-	
-=======
+	public final static String HOST = "10.10.10.2";
+	public final static String PORT = "25";
 
-	public final static String FINANCE_MAIL = "";
-	public final static String FINANCE_PW = "";
-	public final static String LIFE_NEW_BUSINESS_MAIL = "";
+	public final static String FINANCE_MAIL = "fin@arpicoinsurance.com";
+	public final static String FINANCE_PW = "Fin@ins%3210";
+	public final static String LIFE_MAIL = "life@arpicoinsurance.com";
+	public final static String LIFE_PW = "ains#6789";
+	public final static String LIFE_NEW_BUSINESS_MAIL = "newbusiness@arpicoinsurance.com";
 	public final static String LIFE_NEW_BUSINESS_PW = "";
-	public final static String LIFE_SERVICEING_MAIL = "";
+	public final static String LIFE_SERVICEING_MAIL = "servicing@arpicoinsurance.com";
 	public final static String LIFE_SERVICEING_PW = "";
-	public final static String IT_MAIL = "";
-	public final static String IT_PW = "";
-	public final static String SALES_MAIL = "";
-	public final static String SALES_PW = "";
+	public final static String IT_MAIL = "it@arpicoinsurance.com";
+	public final static String IT_PW = "IT@ins%8356";
+	public final static String SALES_ADMIN_MAIL = "salesadmin@arpicoinsurance.com";
+	public final static String SALES_ADMIN_PW = "SA@ins%9012";
+	public final static String ADMIN_MAIL = "admin@arpicoinsurance.com";
+	public final static String ADMIN_PW = "Adm@ins%3570";
+	public final static String CLAIM_MAIL = "claims@arpicoinsurance.com";
+	public final static String CLAIM_PW = "";
+	
 
 	synchronized public static String getMail(String dep) {
 
@@ -42,8 +40,17 @@ public class Email {
 		case "IT":
 			mail = IT_MAIL;
 			break;
-		case "SALES":
-			mail = SALES_MAIL;
+		case "SALESADMIN":
+			mail = SALES_ADMIN_MAIL;
+			break;
+		case "ADMIN":
+			mail = ADMIN_MAIL;
+			break;
+		case "CLAIM":
+			mail = CLAIM_MAIL;
+			break;
+		case "LIFE":
+			mail = LIFE_MAIL;
 			break;
 
 		default:
@@ -71,8 +78,17 @@ public class Email {
 		case "IT":
 			pw = IT_PW;
 			break;
-		case "SALES":
-			pw = SALES_PW;
+		case "SALESADMIN":
+			pw = SALES_ADMIN_PW;
+			break;
+		case "ADMIN":
+			pw = ADMIN_PW;
+			break;
+		case "CLAIM":
+			pw = CLAIM_PW;
+			break;
+		case "LIFE":
+			pw = LIFE_PW;
 			break;
 
 		default:
@@ -82,6 +98,6 @@ public class Email {
 		return pw;
 
 	}
->>>>>>> branch 'feature-email' of https://github.com/arpicoinsuranceit/InfosysWS.git
+
 
 }

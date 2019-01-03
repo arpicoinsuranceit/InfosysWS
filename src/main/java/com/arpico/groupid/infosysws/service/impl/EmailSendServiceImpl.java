@@ -50,38 +50,39 @@ public class EmailSendServiceImpl implements EmailSendService {
 		}
 	}
 
-	private void sendEmail(EmailDto dto) throws AddressException, MessagingException, IllegalStateException, IOException {
-		
+	private void sendEmail(EmailDto dto)
+			throws AddressException, MessagingException, IllegalStateException, IOException {
+
 		Properties props = new Properties();
 
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", Email.HOST); 
+		props.put("mail.smtp.host", Email.HOST);
 		props.put("mail.smtp.port", Email.PORT);
 
-		Session session = Session.getInstance(props,
-				new javax.mail.Authenticator() {
-					protected PasswordAuthentication getPasswordAuthentication() {
-						return new PasswordAuthentication(Email.getMail(dto.getDepartment()),
-								Email.getPassword(dto.getDepartment()));
-					}
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(Email.getMail(dto.getDepartment()),
+						Email.getPassword(dto.getDepartment()));
+			}
 
-				});
+		});
 
 		Message message = new MimeMessage(session);
-		message.setFrom(new InternetAddress(dto.getFromMail()));
+		message.setFrom(new InternetAddress(Email.getMail(dto.getDepartment())));
 
 		message.setRecipients(Message.RecipientType.TO,
 
 				InternetAddress.parse(dto.getToMail()));
-		
+
 		String cc = "";
-		
-		for(String s : dto.getCcMails()) {
-			cc += s+",";
+		if (!dto.getCcMails().isEmpty()) {
+			for (String s : dto.getCcMails()) {
+				cc += s + ",";
+			}
 		}
-		
-		cc= cc.substring(0, cc.length()-1);
+
+		cc = cc.substring(0, cc.length() - 1);
 
 		message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(cc));
 
@@ -92,18 +93,20 @@ public class EmailSendServiceImpl implements EmailSendService {
 		Multipart multipart = new MimeMultipart();
 		multipart.addBodyPart(messageBodyPart);
 
-		for (MultipartFile i : dto.getAttachments()) {
+		if (!dto.getAttachments().isEmpty()) {
+			for (MultipartFile i : dto.getAttachments()) {
 
-			File convFile = new File( i.getOriginalFilename());
-		    i.transferTo(convFile);
-			
-			DataSource source = new FileDataSource(new File(convFile.getName()));
+				File convFile = new File(i.getOriginalFilename());
+				i.transferTo(convFile);
 
-			messageBodyPart = new MimeBodyPart();
-			messageBodyPart.setDataHandler(new DataHandler(source));
-			messageBodyPart.setFileName(i.getName());
+				DataSource source = new FileDataSource(new File(convFile.getName()));
 
-			multipart.addBodyPart(messageBodyPart);
+				messageBodyPart = new MimeBodyPart();
+				messageBodyPart.setDataHandler(new DataHandler(source));
+				messageBodyPart.setFileName(i.getName());
+
+				multipart.addBodyPart(messageBodyPart);
+			}
 		}
 
 		message.setContent(multipart);

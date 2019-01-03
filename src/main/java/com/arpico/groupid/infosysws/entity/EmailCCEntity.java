@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "EMAIL_LOG_CC")
+@Table(name = "INEMAIL_LOG_CC")
 public class EmailCCEntity {
 
 	private Integer id;

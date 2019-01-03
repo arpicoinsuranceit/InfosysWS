@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.arpico.groupit</groupId>
   <artifactId>infosysws</artifactId>
-  <version>V0.1</version>
+  <version>1.0.0</version>
   <name>InfosysWS</name>
   <parent>
 		<groupId>org.springframework.boot</groupId>
@@ -15,6 +15,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<start-class>com.arpico.groupid.infosysws.InfosysWs</start-class>
 	</properties>
 
 	<dependencies>
@@ -123,11 +124,17 @@
     		<groupId>org.springframework.boot</groupId>
     		<artifactId>spring-boot-starter-mail</artifactId>
     	</dependency>
-<<<<<<< HEAD
-=======
-		
->>>>>>> branch 'feature-email' of https://github.com/arpicoinsuranceit/InfosysWS.git
 
 	</dependencies>
-	<packaging>war</packaging>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<finalName>InfosysWS</finalName>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

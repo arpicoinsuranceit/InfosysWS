@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "EMAIL_LOG")
+@Table(name = "INEMAIL_LOG")
 public class EmailLogEntity {
 
 	private Integer id;
