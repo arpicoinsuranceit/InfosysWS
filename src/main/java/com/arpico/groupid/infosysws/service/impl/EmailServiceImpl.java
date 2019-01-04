@@ -7,6 +7,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import com.arpico.groupid.infosysws.dao.EmailAttachmentDao;
@@ -24,6 +26,7 @@ import com.arpico.groupid.infosysws.util.AppConstant;
 
 @Service
 @Transactional
+@PropertySource("classpath:insurance.properties")
 public class EmailServiceImpl implements EmailService {
 	
 	@Autowired
@@ -40,6 +43,9 @@ public class EmailServiceImpl implements EmailService {
 	
 	@Autowired
 	private JwtDecoder decoder;
+	
+	@Value( "${email_footer}" )
+	private String emailfooter;
 
 	@Override
 	public ResponseDto send(EmailDto emailDto) throws Exception {
@@ -101,6 +107,7 @@ public class EmailServiceImpl implements EmailService {
 		{
 		    public void run() {
 		        try {
+		        	emailDto.setBody(emailDto.getBody()+emailfooter);
 					emailSendService.sendEmail(emailDto, savedEmailLogEntity);
 				} catch (Exception e) {
 					e.printStackTrace();
