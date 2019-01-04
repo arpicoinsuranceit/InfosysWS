@@ -20,10 +20,10 @@ import com.arpico.groupid.infosysws.util.AppConstant;
 
 @Service
 @Transactional
-@PropertySource("classpath:authentications.properties")
+@PropertySource("classpath:insurance.properties")
 public class SendSMSServiceImpl implements SendSMSService{
 	
-	@Value( "${authentication_password}" )
+	@Value( "${dialog_sms_gateway_password}" )
 	private String password;
 	
 	@Autowired
@@ -31,10 +31,7 @@ public class SendSMSServiceImpl implements SendSMSService{
 
 	@Override
 	public void sendSMS(String message,ArrayList<InRcptSmsLog> log,String userCode) throws Exception {
-		System.out.println(password + " password");
-		System.out.println(message);
-		
-		
+	
 		new Thread() {
 			public void run() {
 				for (InRcptSmsLog inRcptSmsLog : log) {

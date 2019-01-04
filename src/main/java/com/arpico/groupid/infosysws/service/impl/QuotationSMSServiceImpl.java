@@ -57,7 +57,7 @@ public class QuotationSMSServiceImpl implements QuotationSMSService{
 			
 			String message=smsParaEntity.getMsg();
 			
-			String replaceString=message.replaceAll("#amount#", Double.toString(receiptDetails.getTotprm()));
+			String replaceString=message.replaceAll("#amount#", Double.toString(receiptDetails.getTotprm().intValue()));
 			replaceString=replaceString.replaceAll("#quonum#", Integer.toString(receiptDetails.getQuonum()));
 			replaceString=replaceString.replaceAll("#propnum#", receiptDetails.getPprnum());
 			replaceString=replaceString.replaceAll("#date#", new SimpleDateFormat("dd-MM-yyyy").format(receiptDetails.getCreadt()));
@@ -70,15 +70,7 @@ public class QuotationSMSServiceImpl implements QuotationSMSService{
 				replaceString=replaceString.replaceAll("#premiumshort#", "");
 			}
 			
-			System.out.println("Start message ...");
-			System.out.println(message);
-			System.out.println(replaceString);
-			System.out.println("End message ...");
-			
 			String customerMob=inProposalCustomDao.getCustomerMobile(receiptDetails.getPprnum());
-			
-			System.out.println(customerMob);
-			System.out.println(replaceString.length());
 			
 			InRcptSmsLog inRcptSmsLog=new InRcptSmsLog();
 			
