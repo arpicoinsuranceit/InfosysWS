@@ -39,7 +39,7 @@ public class SendSMSServiceImpl implements SendSMSService{
 					MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
 					map.add("destination", inRcptSmsLog.getPpdmob());
 					map.add("q", password);
-					map.add("message", message);
+					map.add(" ", message);
 	
 					try {
 						RestTemplate restTemplate = new RestTemplate();
@@ -47,9 +47,10 @@ public class SendSMSServiceImpl implements SendSMSService{
 								String.class);
 						System.out.println(result);
 						
-						if(result == "0") {
+						if(result.equals("0")) {
 							inRcptSmsLog.setSendby(userCode);
 							inRcptSmsLog.setSnddat(new Date());
+							inRcptSmsLog.setSndsts("Y");
 							inRcptSmsLog.setSmssts("Y");
 							inRcptSmsLog.setErrmsg(result);
 							
@@ -57,6 +58,7 @@ public class SendSMSServiceImpl implements SendSMSService{
 							
 						}else {
 							inRcptSmsLog.setSmssts("N");
+							inRcptSmsLog.setSndsts("N");
 							inRcptSmsLog.setErrmsg(result);
 							
 							inRcptSmsLogDao.save(inRcptSmsLog);
