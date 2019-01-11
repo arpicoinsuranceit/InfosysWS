@@ -57,6 +57,8 @@ public class SendSMSServiceImpl implements SendSMSService{
 							inRcptSmsLogDao.save(inRcptSmsLog);
 							
 						}else {
+							inRcptSmsLog.setSendby(userCode);
+							inRcptSmsLog.setSnddat(new Date());
 							inRcptSmsLog.setSmssts("N");
 							inRcptSmsLog.setSndsts("N");
 							inRcptSmsLog.setErrmsg(result);
