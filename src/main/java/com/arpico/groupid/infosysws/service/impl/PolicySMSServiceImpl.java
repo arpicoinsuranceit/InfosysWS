@@ -83,6 +83,7 @@ public class PolicySMSServiceImpl implements PolicySMSService{
 			inRcptSmsLog.setLoccod(receiptDetails.getLoccod());
 			inRcptSmsLog.setLockin(new Date());
 			inRcptSmsLog.setMesage(replaceString);
+			inRcptSmsLog.setSndsts("N");
 			
 			String polnum=Integer.toString(receiptDetails.getPolnum());
 			
