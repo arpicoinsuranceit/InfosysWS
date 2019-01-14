@@ -39,7 +39,7 @@ public class SendSMSServiceImpl implements SendSMSService{
 					MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
 					map.add("destination", inRcptSmsLog.getPpdmob());
 					map.add("q", password);
-					map.add(" ", message);
+					map.add("message", message);
 	
 					try {
 						RestTemplate restTemplate = new RestTemplate();

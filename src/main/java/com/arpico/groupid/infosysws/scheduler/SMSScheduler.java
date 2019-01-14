@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import com.arpico.groupid.infosysws.dao.InRcptSmsLogDao;
+import com.arpico.groupid.infosysws.dao.SchedulerCustomDao;
 import com.arpico.groupid.infosysws.entity.InRcptSmsLog;
 import com.arpico.groupid.infosysws.service.SendSMSService;
 
@@ -15,19 +15,21 @@ import com.arpico.groupid.infosysws.service.SendSMSService;
 public class SMSScheduler {
 	
 	@Autowired
-	private InRcptSmsLogDao inRcptSmsLogDao;
+	private SchedulerCustomDao schedulerCustomDao;
 	
 	@Autowired
 	private SendSMSService sendSmsService;
 	
 	
-	//run 8 pm every day unsend receipt SMS	
+	//run 8 pm every day unsend receipt SMS	(0 0 20 * * *) 
 	@Scheduled(cron="0 0 20 * * *")
 	public void smsSchedule() {
 		
 		try {
 			
-			List<InRcptSmsLog> inRcptSmsLogs=inRcptSmsLogDao.findBySndsts("N");
+			List<InRcptSmsLog> inRcptSmsLogs=schedulerCustomDao.unsendReceiptSms();
+			
+			System.out.println(inRcptSmsLogs.size());
 			
 			if(inRcptSmsLogs != null) {
 				inRcptSmsLogs.forEach(i ->{
@@ -46,7 +48,7 @@ public class SMSScheduler {
 			e.printStackTrace();
 		}
 		
-		System.out.println("Method executed at every 10 seconds. Current time is :: "+ new Date());
+		System.out.println("Method executed at everyday 8 pm. Current time is :: "+ new Date());
 	}
 
 }

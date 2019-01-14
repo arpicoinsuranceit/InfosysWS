@@ -1,18 +1,26 @@
 package com.arpico.groupid.infosysws.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.arpico.groupid.infosysws.dao.SchedulerCustomDao;
 import com.arpico.groupid.infosysws.dto.ResponseDto;
 import com.arpico.groupid.infosysws.dto.SMSDto;
+import com.arpico.groupid.infosysws.entity.InRcptSmsLog;
 import com.arpico.groupid.infosysws.service.PolicySMSService;
 import com.arpico.groupid.infosysws.service.ProposalSMSService;
 import com.arpico.groupid.infosysws.service.QuotationSMSService;
+import com.arpico.groupid.infosysws.service.UnSendSMSService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -26,6 +34,12 @@ public class SMSController {
 	
 	@Autowired
 	private QuotationSMSService quotationSMSService;
+	
+	@Autowired
+	private SchedulerCustomDao schedulerCustomDao;
+	
+	@Autowired
+	private UnSendSMSService unSendSMSService;
 	
 	@PostMapping("/sendSMS")
 	public ResponseEntity<Object> sendSMS(@RequestBody SMSDto smsDto){
@@ -79,6 +93,16 @@ public class SMSController {
 		}
 		
 		return new ResponseEntity<>(msg, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/unSendReceiptSMS", method = RequestMethod.GET)
+	public void unsendReceiptSMSSend(){
+		System.out.println(" called unsend");
+		try {
+			unSendSMSService.unsendReceiptSMS();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

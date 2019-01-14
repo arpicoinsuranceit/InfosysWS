@@ -92,6 +92,7 @@ public class ProposalSMSServiceImpl implements ProposalSMSService{
 			inRcptSmsLog.setLoccod(receiptDetails.getLoccod());
 			inRcptSmsLog.setLockin(new Date());
 			inRcptSmsLog.setMesage(replaceString);
+			inRcptSmsLog.setSndsts("N");
 			
 			String polnum=Integer.toString(receiptDetails.getPolnum());
 			
