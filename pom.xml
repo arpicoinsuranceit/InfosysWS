@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.arpico.groupit</groupId>
   <artifactId>infosysws</artifactId>
-  <version>1.0.4</version>
+  <version>2.0.0</version>
   <name>InfosysWS</name>
   <parent>
 		<groupId>org.springframework.boot</groupId>
