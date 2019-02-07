@@ -13,6 +13,7 @@ public class EmailDto {
 	private String subject;
 	private String body;
 	private String department;
+	private String bodyContentType;
 	private List<String> ccMails;
 	private List<String> filePaths;
 	private List<MultipartFile> attachments;
@@ -95,6 +96,15 @@ public class EmailDto {
 
 	public void setAttachments(List<MultipartFile> attachments) {
 		this.attachments = attachments;
+	}
+	
+
+	public String getBodyContentType() {
+		return bodyContentType;
+	}
+
+	public void setBodyContentType(String bodyContentType) {
+		this.bodyContentType = bodyContentType;
 	}
 
 	@Override
