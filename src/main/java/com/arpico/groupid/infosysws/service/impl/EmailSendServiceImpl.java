@@ -90,6 +90,12 @@ public class EmailSendServiceImpl implements EmailSendService {
 		BodyPart messageBodyPart = new MimeBodyPart();
 		messageBodyPart.setText(dto.getBody());
 
+//		if(dto.getBodyContentType() !=  null) {
+//			 messageBodyPart.setContent(dto.getBody(), "text/html");
+//		}else {
+//			messageBodyPart.setText(dto.getBody());
+//		}
+
 		Multipart multipart = new MimeMultipart();
 		multipart.addBodyPart(messageBodyPart);
 
