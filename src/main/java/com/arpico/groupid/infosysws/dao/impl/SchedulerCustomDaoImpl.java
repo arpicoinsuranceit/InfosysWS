@@ -7,9 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.arpico.groupid.infosysws.dao.SchedulerCustomDao;
-import com.arpico.groupid.infosysws.dao.rowmapper.InProposalsRowMapper;
 import com.arpico.groupid.infosysws.dao.rowmapper.InRcptSmsLogRowMapper;
-import com.arpico.groupid.infosysws.entity.InProposalsEntity;
 import com.arpico.groupid.infosysws.entity.InRcptSmsLog;
 
 @Repository
@@ -28,6 +26,7 @@ public class SchedulerCustomDaoImpl implements SchedulerCustomDao{
 		
 	}
 
+	/*
 	@Override
 	public List<InProposalsEntity> sixMonthOldProposals(String sbuCode) throws Exception {
 		
@@ -37,5 +36,6 @@ public class SchedulerCustomDaoImpl implements SchedulerCustomDao{
 		
 		return jdbcTemplate.query(sql, new InProposalsRowMapper());
 	}
+	*/
 
 }

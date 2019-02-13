@@ -28,8 +28,8 @@ public class InBillingTransactionCustomDaoImpl implements InBillingTransactionCu
 			List<Object> args = new ArrayList<>();
 			args.add(pprNo);
 
-			amount = jdbcTemplate.query("SELECT if(sum(amount) >0,sum(amount),(select totprm from inproposals where sbucod='450' and pprnum='"+pprNo+"' and pprsta <> 'INAC'))+(select sum(depost) from inbillingtransactions where sbucod='450' and pprnum ='"+pprNo+"') `sum`  FROM inbillingtransactions " +  
-					" where sbucod = '450' and pprnum=? and  txnyer <= year(curdate()) and txnmth <= month(curdate());",
+			amount = jdbcTemplate.query("SELECT if(sum(amount) > 0,sum(amount),(select totprm from inproposals where sbucod='450' and pprnum='"+pprNo+"' and pprsta <> 'INAC'))+(select sum(depost) from inbillingtransactions where sbucod='450' and pprnum ='"+pprNo+"') `sum`  FROM inbillingtransactions " +  
+					" where sbucod = '450' and pprnum=? and  txnyer <= year(curdate()) and txnmth <= month(curdate()) ",
 					args.toArray(), new ResultSetExtractor<Double>() {
 
 						@Override

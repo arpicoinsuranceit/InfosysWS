@@ -42,8 +42,9 @@ public class SMSController {
 	private UnSendSMSService unSendSMSService;
 	
 	@PostMapping("/sendSMS")
-	public ResponseEntity<Object> sendSMS(@RequestBody SMSDto smsDto){
+	public ResponseEntity<Object> sendSMS(@RequestBody SMSDto smsDto) throws InterruptedException{
 		System.out.println(smsDto);
+		Thread.sleep(5000);
 		
 		ResponseDto msg = null;
 		
